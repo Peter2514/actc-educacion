@@ -87,7 +87,7 @@ body.alu{overflow-x:hidden;padding:env(safe-area-inset-top,0px) 0 env(safe-area-
   padding:12px 18px;background:var(--card);border:1.5px solid var(--borde);color:#fff}
 
 /* ═══════════════════ PRESENTACIÓN DEL PROFE ═══════════════════ */
-.hoja{position:absolute;inset:0;display:none;flex-direction:column;padding:3vh 4vw 1.8vh;z-index:1}
+.hoja{--k:1;position:absolute;inset:0;display:none;flex-direction:column;padding:3vh 4vw 1.8vh;z-index:1}
 .hoja.activa{display:flex}
 
 .cab{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex:0 0 auto}
@@ -97,20 +97,20 @@ body.alu{overflow-x:hidden;padding:env(safe-area-inset-top,0px) 0 env(safe-area-
 .cab-txt span{display:block;font-size:1.8vh;color:var(--gris)}
 .cab-txt b.resp{color:var(--verde)}
 
-.preg{font-size:3.4vh;font-weight:700;line-height:1.2;margin:2.4vh 0 0;max-width:94%;flex:0 0 auto}
+.preg{font-size:calc(var(--k) * 4.4vh);font-weight:700;line-height:1.2;margin:2.4vh 0 0;max-width:94%;flex:0 0 auto}
 
 .cuerpo{flex:1;display:flex;gap:2.4vw;min-height:0;margin:1.6vh 0}
 .opciones{flex:1;display:flex;flex-direction:column;justify-content:center;gap:1.3vh;min-height:0}
 .opciones.muchas{gap:.85vh}
 .op{display:flex;align-items:center;gap:2vw;background:var(--card);
-  border:1.5px solid var(--borde);border-radius:1.4vh;padding:1.7vh 2.2vw;
+  border:1.5px solid var(--borde);border-radius:1.4vh;padding:calc(var(--k) * 1.7vh) 2.2vw;
   transition:background .25s,border-color .25s,opacity .25s}
-.badge{flex:0 0 auto;width:5vh;height:5vh;border-radius:50%;background:var(--badge);
-  display:flex;align-items:center;justify-content:center;font-size:2.4vh;font-weight:700}
-.txt{font-size:2.05vh;line-height:1.3}
-.opciones.muchas .op{padding:1.1vh 2.2vw;border-radius:1.1vh}
-.opciones.muchas .badge{width:4vh;height:4vh;font-size:1.9vh}
-.opciones.muchas .txt{font-size:1.8vh}
+.badge{flex:0 0 auto;width:calc(var(--k) * 6vh);height:calc(var(--k) * 6vh);border-radius:50%;background:var(--badge);
+  display:flex;align-items:center;justify-content:center;font-size:calc(var(--k) * 2.9vh);font-weight:700}
+.txt{font-size:calc(var(--k) * 2.9vh);line-height:1.28}
+.opciones.muchas .op{padding:calc(var(--k) * 1.1vh) 2.2vw;border-radius:1.1vh}
+.opciones.muchas .badge{width:calc(var(--k) * 4.8vh);height:calc(var(--k) * 4.8vh);font-size:calc(var(--k) * 2.3vh)}
+.opciones.muchas .txt{font-size:calc(var(--k) * 2.5vh)}
 .op.bien{background:var(--verde);border-color:var(--verde)}
 .op.bien .badge{background:#fff;color:var(--verde-osc)}
 .op.bien .txt{font-weight:700}
@@ -124,10 +124,10 @@ body.alu{overflow-x:hidden;padding:env(safe-area-inset-top,0px) 0 env(safe-area-
 .figura .lienzo{background:#fff;border-radius:1.2vh;padding:1vh;min-height:0;display:flex;
   align-items:center;justify-content:center;overflow:hidden}
 .figura img{display:block;max-width:100%;max-height:44vh;width:auto;height:auto}
-.figura .epi{font-size:1.45vh;color:var(--gris);line-height:1.35}
+.figura .epi{font-size:calc(var(--k) * 1.9vh);color:var(--gris);line-height:1.35}
 
 /* ---- franja de alumnos ---- */
-.alumnos{display:grid;grid-template-columns:repeat(3,1fr);gap:1vw;flex:0 0 auto;margin-bottom:1vh;
+.alumnos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1vw;flex:0 0 auto;margin-bottom:1vh;
   padding-top:8.6vh;margin-top:-8.6vh;align-items:end}
 .al{position:relative;background:#121317;border:1.5px solid #2E3038;border-radius:1.1vh;
   padding:.9vh 1vw;display:flex;align-items:center;gap:.9vw;
@@ -140,7 +140,7 @@ body.alu{overflow-x:hidden;padding:env(safe-area-inset-top,0px) 0 env(safe-area-
   color:#fff;font-family:inherit;font-size:1.95vh;font-weight:700;padding:.15vh 0;outline:none}
 .al input::placeholder{color:#5A5E6A;font-weight:400}
 .al input:focus{border-bottom-color:var(--ambar)}
-.al .nomfijo{font-size:1.95vh;font-weight:700;padding:.15vh 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.al .nomfijo{font-size:2.6vh;font-weight:700;padding:.15vh 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .al.llego{border-color:#4A4E58}
 .al.llego .orden{background:var(--ambar);color:#12161A;border-color:var(--ambar)}
 .letras{display:flex;gap:.35vw;flex:0 0 auto}
@@ -167,6 +167,10 @@ body.alu{overflow-x:hidden;padding:env(safe-area-inset-top,0px) 0 env(safe-area-
 .al.acerto .orden{background:#12161A;color:var(--verde);border-color:var(--verde)}
 .al.fallo .orden{background:#7A1512;color:#fff;border-color:#7A1512}
 
+/* con 5 o más opciones las letras se achican para que entren las tres tarjetas */
+.alumnos.muchas .letras{gap:.2vw}
+.alumnos.muchas .letras button,.alumnos.muchas .letras span{width:2.7vh;height:2.7vh;font-size:1.35vh;border-radius:.5vh}
+
 /* corona de laurel sobre el ganador */
 .al .corona{display:none}
 .al.gana .corona{display:block;position:absolute;left:50%;top:-8.2vh;
@@ -181,7 +185,7 @@ body.alu{overflow-x:hidden;padding:env(safe-area-inset-top,0px) 0 env(safe-area-
 .pulsa-cuerpo{flex:1;display:flex;gap:4vw;min-height:0;margin:2.4vh 0 1.4vh;align-items:center}
 .pulsa-izq{flex:0 0 38%;display:flex;flex-direction:column;gap:2vh}
 .pulsa-izq .numg{font-size:2vh;font-weight:700;letter-spacing:.42em;color:var(--ambar);text-transform:uppercase}
-.pulsa-izq .enun{font-size:3.6vh;font-weight:700;line-height:1.22}
+.pulsa-izq .enun{font-size:4.2vh;font-weight:700;line-height:1.22}
 .pulsa-izq .llamado{display:flex;align-items:center;gap:1.2vw;font-size:2.2vh;color:var(--gris)}
 .pulsa-izq .punto{width:2.2vh;height:2.2vh;border-radius:50%;background:var(--verde);flex:0 0 auto;
   box-shadow:0 0 0 0 rgba(29,185,84,.6);animation:latido 1.4s infinite}
@@ -206,25 +210,25 @@ body.alu{overflow-x:hidden;padding:env(safe-area-inset-top,0px) 0 env(safe-area-
 @media (max-width:900px){ .pulsa-cuerpo{flex-direction:column;align-items:stretch;overflow-y:auto} }
 
 /* ---- lámina de respuesta ---- */
-.preg-chica{font-size:2vh;color:var(--gris);font-style:italic;line-height:1.35;margin-top:1.6vh;max-width:94%;flex:0 0 auto}
+.preg-chica{font-size:calc(var(--k) * 2.7vh);color:#C3C6CD;font-style:italic;line-height:1.35;margin-top:1.6vh;max-width:94%;flex:0 0 auto}
 .resp-cuerpo{flex:1;display:flex;gap:2.6vw;min-height:0;margin:1.8vh 0 1.2vh}
 .resp-izq{flex:1 1 52%;display:flex;flex-direction:column;justify-content:center;gap:1vh;min-height:0}
 .resp-izq .opciones{flex:0 0 auto;gap:.8vh}
-.resp-izq .op{padding:1.1vh 1.6vw;border-radius:1.1vh}
-.resp-izq .badge{width:4vh;height:4vh;font-size:1.9vh}
-.resp-izq .txt{font-size:1.85vh}
-.resp-izq .opciones.muchas .op{padding:.7vh 1.6vw}
-.resp-izq .opciones.muchas .badge{width:3.4vh;height:3.4vh;font-size:1.6vh}
-.resp-izq .opciones.muchas .txt{font-size:1.65vh}
-.porque{flex:1 1 48%;align-self:center;max-height:100%;overflow-y:auto;display:flex;flex-direction:column;justify-content:center;gap:1.4vh;min-height:0;
+.resp-izq .op{padding:calc(var(--k) * 1.1vh) 1.6vw;border-radius:1.1vh}
+.resp-izq .badge{width:calc(var(--k) * 4.8vh);height:calc(var(--k) * 4.8vh);font-size:calc(var(--k) * 2.3vh)}
+.resp-izq .txt{font-size:calc(var(--k) * 2.5vh)}
+.resp-izq .opciones.muchas .op{padding:calc(var(--k) * .7vh) 1.6vw}
+.resp-izq .opciones.muchas .badge{width:calc(var(--k) * 4vh);height:calc(var(--k) * 4vh);font-size:calc(var(--k) * 1.9vh)}
+.resp-izq .opciones.muchas .txt{font-size:calc(var(--k) * 2.2vh)}
+.porque{flex:1 1 48%;align-self:center;max-height:100%;overflow-y:auto;display:flex;flex-direction:column;justify-content:flex-start;gap:1.4vh;min-height:0;
   border-left:.5vh solid var(--ambar);padding-left:2vw}
-.porque .rotp{font-size:1.6vh;font-weight:700;letter-spacing:.32em;color:var(--ambar)}
-.porque p{font-size:2.15vh;line-height:1.5;color:#E3E5EA}
-.porque p.largo{font-size:1.85vh}
+.porque .rotp{font-size:calc(var(--k) * 2.1vh);font-weight:700;letter-spacing:.32em;color:var(--ambar)}
+.porque p{font-size:calc(var(--k) * 2.9vh);line-height:1.45;color:#E3E5EA}
+.porque p.largo{font-size:calc(var(--k) * 2.5vh)}
 .porque .cifras{display:flex;gap:1.2vw;flex-wrap:wrap}
 .porque .cifra{flex:1;min-width:12vw;background:var(--card);border:1.5px solid var(--borde);border-radius:1.2vh;padding:1.4vh 1.2vw}
-.porque .cifra b{display:block;font-size:3.6vh;line-height:1.05;color:#fff}
-.porque .cifra span{display:block;font-size:1.5vh;color:var(--gris);margin-top:.5vh;line-height:1.3}
+.porque .cifra b{display:block;font-size:calc(var(--k) * 4.6vh);line-height:1.05;color:#fff}
+.porque .cifra span{display:block;font-size:calc(var(--k) * 2vh);color:var(--gris);margin-top:.5vh;line-height:1.3}
 .alumnos.res{padding-top:7.6vh;margin-top:0}
 .sinmano{font-size:1.6vh;color:var(--gris);font-style:italic}
 
@@ -1299,7 +1303,7 @@ function hojaPregunta(m, q, num){
     cabecera("PREGUNTA " + num, m, q) +
     '<p class="preg">' + q.pregunta + '</p>' +
     '<div class="cuerpo">' + opcionesHTML(q) + figura + '</div>' +
-    '<div class="alumnos">' + alumnos + '</div>' +
+    '<div class="alumnos' + (q.opciones.length >= 5 ? ' muchas' : '') + '">' + alumnos + '</div>' +
     '<footer class="pie"><span class="cuantos"></span><span class="nav">' +
       '<button type="button" data-reabrir title="Borra las manos y vuelve a abrir el pulsador">↻ Reabrir pulsador</button>' +
       '<button type="button" data-limpiar>Limpiar</button>' +
@@ -1416,7 +1420,7 @@ function hojaRespuesta(m, q, num){
     cabecera("RESPUESTA " + num, m, q, "resp") +
     '<p class="preg-chica">' + q.pregunta + '</p>' +
     '<div class="resp-cuerpo">' +
-      '<div class="resp-izq">' + opcionesHTML(q) + '<div class="alumnos res"></div></div>' +
+      '<div class="resp-izq">' + opcionesHTML(q) + '<div class="alumnos res' + (q.opciones.length >= 5 ? ' muchas' : '') + '"></div></div>' +
       (q.porque || cifras ? '<div class="porque"><span class="rotp">POR QUÉ</span>' +
         (q.porque ? '<p class="' + largo + '">' + esc(q.porque) + '</p>' : '') + cifras + '</div>' : '') +
     '</div>' +
@@ -1466,7 +1470,7 @@ function pintarRespuesta(num, q, festejo){
         '<span class="orden">' + (f.n + 1) + 'º</span>' +
         '<div class="datos"><span class="rot">' + (f.v ? 'RESPONDIÓ ' + LETRAS[f.letra] : 'NO CONTESTÓ') + '</span>' +
         '<div class="nomfijo">' + esc(f.nombre) + '</div></div>' +
-        '<div class="letras">' + letras + '</div><span class="veredicto">' + ver + '</span></div>';
+        '<span class="veredicto">' + ver + '</span></div>';
     }).join("");
   }
   var g = filas.filter(function(f){ return f.v === "gana"; })[0];
@@ -1523,6 +1527,46 @@ function publicarPodio(num){
   DB.escribir("salas/" + SALA + "/podio/" + r, cinco).catch(function(){});
 }
 
+/* ---- letra al máximo: cada lámina prueba de grande a chica hasta que todo entra ---- */
+var K_MAX = 1.6, K_MIN = 0.7;
+function contenidoAlto(c){
+  var arriba = Infinity, abajo = -Infinity;
+  for (var i = 0; i < c.children.length; i++){
+    var r = c.children[i].getBoundingClientRect();
+    if (!r.height) continue;
+    if (r.top < arriba) arriba = r.top;
+    if (r.bottom > abajo) abajo = r.bottom;
+  }
+  return abajo > arriba ? abajo - arriba : 0;
+}
+function desborda(el){
+  var cajas = el.querySelectorAll(".opciones,.resp-izq,.porque,.cuerpo,.resp-cuerpo");
+  for (var i = 0; i < cajas.length; i++){
+    var c = cajas[i];
+    if (contenidoAlto(c) > c.clientHeight + 1) return true;
+    if (c.scrollWidth > c.clientWidth + 1) return true;
+  }
+  var pie = el.querySelector(".pie");
+  if (pie && pie.getBoundingClientRect().bottom > window.innerHeight + 1) return true;
+  var preg = el.querySelector(".preg");
+  if (preg && preg.scrollWidth > preg.clientWidth + 1) return true;
+  return false;
+}
+function ajustarLetra(h){
+  if (!h || (h.tipo !== "pregunta" && h.tipo !== "respuesta")) return;
+  var el = h.el, k = K_MAX;
+  el.style.setProperty("--k", k);
+  while (k > K_MIN && desborda(el)){
+    k = Math.round((k - 0.05) * 100) / 100;
+    el.style.setProperty("--k", k);
+  }
+}
+var relojTamano = null;
+window.addEventListener("resize", function(){
+  clearTimeout(relojTamano);
+  relojTamano = setTimeout(function(){ if (HOJAS[ACTUAL]) ajustarLetra(HOJAS[ACTUAL]); }, 150);
+});
+
 /* ---- navegación ---- */
 function mostrar(n, d){
   cerrarGanador();
@@ -1537,6 +1581,7 @@ function mostrar(n, d){
     pintarRespuesta(h.num, h.q, desdeSuPregunta);
   }
   else dejarDeEscuchar();
+  ajustarLetra(h);
 }
 function mover(d){
   var n = Math.max(0, Math.min(HOJAS.length - 1, ACTUAL + d));
